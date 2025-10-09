@@ -428,6 +428,7 @@ article.active {
     justify-content: center;
     align-items: center;
     padding: 0 10px;
+    gap: 0 10px;
 }
 
 .navbar-link {
@@ -1260,9 +1261,12 @@ textarea.form-input::-webkit-realizer {
     .blog-banner-box {
         height: auto;
     }
+    /* .navbar-item{
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    } */
     .navbar-link{
         padding: 15px 0px;
-        flex-wrap: nowrap;
     }
     
 }
