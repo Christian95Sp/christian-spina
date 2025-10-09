@@ -91,9 +91,9 @@
     align-items: center;
     gap: 15px;
     animation: fadeIn .5s ease-out forwards;
-    padding: 10px 100px;
+    /* padding: 10px 100px; */
     /* 2 colonne versione smartphone */
-    /* padding: 20px; */
+    padding: 20px;
 }
 
 @keyframes fadeIn {
@@ -141,14 +141,14 @@
 /*   **************************************/
 
 /* Media Queries */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
 
     .skills-box .skills-list,
 .skills-box.active .tools-list {
-    padding: 20px;
+    padding: 10px 100px;
 }
 }
-/* 
+
 @media (min-width: 1024px) {
        .skills-box .skills-list,
 .skills-box.active .tools-list {
@@ -160,7 +160,7 @@
 .skills-box.active .tools-list {
     padding: 10px 100px;
 }
-} */
+}
 
 
 /* @media (min-width: 768px) {
