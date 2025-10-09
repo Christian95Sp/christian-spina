@@ -1251,6 +1251,23 @@ textarea.form-input::-webkit-realizer {
 
 
 /*MEDIA QUERIES*/
+@media (max-width: 450px) {
+    .clients-item {
+        min-width: calc(33.33% - 10px);
+    }
+
+    .project-img,
+    .blog-banner-box {
+        height: auto;
+    }
+    /* .navbar-item{
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+    } */
+
+
+}
+
 
 @media (min-width: 450px) {
     .clients-item {
