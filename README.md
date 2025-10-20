@@ -1,1 +1,1 @@
-https://github.com/Christian95Sp/christian.spina.git
+https://christian95sp.github.io/christian-spina/
