@@ -681,7 +681,13 @@ article.active {
     margin-bottom: 4px;
 }
 
-.modal-content time {
+/* .modal-content time {
+    font-size: var(--fs6);
+    color: var(--light-gray70);
+    font-weight: var(--fw500);
+    margin-bottom: 10px;
+} */
+.modal-content span {
     font-size: var(--fs6);
     color: var(--light-gray70);
     font-weight: var(--fw500);
@@ -695,9 +701,14 @@ article.active {
     line-height: 1.6;
 }
 
+.modal-content p b {
+    color: var(--white1);
+    font-weight: var(--fw500);
+}
+
 /*CLIENTS*/
 
-.clients {
+/* .clients {
     margin-bottom: 15px;
 }
 
@@ -729,7 +740,7 @@ article.active {
 
 .clients-item img:hover {
     filter: grayscale(0);
-}
+} */
 
 /*RESUME*/
 
