@@ -681,13 +681,7 @@ article.active {
     margin-bottom: 4px;
 }
 
-/* .modal-content time {
-    font-size: var(--fs6);
-    color: var(--light-gray70);
-    font-weight: var(--fw500);
-    margin-bottom: 10px;
-} */
-.modal-content span {
+.modal-content time {
     font-size: var(--fs6);
     color: var(--light-gray70);
     font-weight: var(--fw500);
