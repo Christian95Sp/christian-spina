@@ -281,13 +281,138 @@ article.active {
     gap: 15px;
 }
 
+/* immagine cv ----------------------------------------------*/
 
-
-.avatar-box {
-    background: var(--bg-gradient-onyx);
-    border-radius: 20px;
+/* Avatar box aggiornato */
+/* .avatar-box {
+  background: var(--bg-gradient-onyx);
+  border-radius: 20px;
+  width: 160px;
+  height: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+  overflow: visible; 
+}
+ */
+/* Loader wrapper per effetto 3D */
+/* .loader-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+ */
+/* Loader quadrato con bordi arrotondati */
+/* .loader {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 6px solid #282828;
+  border-radius: 20%;
+  overflow: hidden; 
+  box-shadow: 
+    -5px -5px 5px rgba(255, 255, 255, 0.1),
+    10px 10px 10px rgba(0, 0, 0, 0.4),
+    inset -5px -5px 5px rgba(255, 255, 255, 0.2),
+    inset 10px 10px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.5s ease;
 }
 
+.loader:before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  background: #212121;
+  border-radius: 20%;
+  border: 2px solid #292929;
+  box-shadow: 
+    inset -2px -2px 5px rgba(255, 255, 255, 0.2),
+    inset 3px 3px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
+}
+
+.loader span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    -225deg,
+    #ff7402 0%,
+    #ffe600 50%,
+    #ffe75e 100%
+  );
+  filter: blur(20px);
+  z-index: 0; 
+  animation: animate 0.5s linear infinite;
+}
+
+@keyframes animate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+/* Immagine persona centrata alla base */
+/* .person {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px) scale(1);
+  width: 120px;
+  transition: transform 0.5s ease;
+}
+ */
+/* Hover: immagine esce verso l'alto, loader si restringe */
+/* .loader-wrapper:hover .person {
+  transform: translateX(-50%) translateY(-55px) scale(1.4);
+}
+
+.loader-wrapper:hover .loader {
+  border-width: 5px; 
+  box-shadow: 
+    -3px -3px 5px rgba(255, 255, 255, 0.1),
+    6px 6px 10px rgba(0, 0, 0, 0.4),
+    inset -3px -3px 5px rgba(255, 255, 255, 0.2),
+    inset 6px 6px 10px rgba(0, 0, 0, 0.4);
+}
+
+.loader-wrapper:hover .loader:before {
+  inset: 5px; 
+} */
+
+/* ********************************** */
+.avatar-box {
+    background: var(--bg-gradient-onyx);
+    border-radius: 15%;
+
+   box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 238, 1, 0.5);
+    border-left: 1px solid rgba(252, 249, 102, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+ .avatar-box .person {
+/*     position: relative;
+    z-index: 1;
+    top: 0;  
+    left: 0;
+    width: 100%;
+    height: 100%; */
+/*     width: 150px;
+    height: 150px; */
+    transform: scale(1); /* rimuoviamo lo spostamento iniziale */
+    bottom: 0;
+
+}
+
+.avatar-box:hover .person {
+  transform: translateY(-15%) scale(1.3);
+  transition: transform 0.5s ease;
+}
+
+/*-------------------------------*/
 .info-content .name {
     color: var(--white2);
     font-size: var(--fs3);
@@ -816,7 +941,8 @@ article.active {
     line-height: 1.6;
     text-align: justify;
 }
-.timeline-text-bold{
+
+.timeline-text-bold {
     font-style: italic;
     color: var(--white1);
     font-weight: var(--fw500);
@@ -892,6 +1018,80 @@ article.active {
 .filter-select.active .select-icon {
     transform: rotate(0.5turn);
 }
+
+/*********************************************/
+/* .cascade-list {
+    background: var(--eerie-black2);
+    position: absolute;
+    padding: 12px 6px;
+    border: 1px solid var(--jet);
+    border-radius: 14px;
+    z-index: 2;
+    visibility: hidden;
+    transition: .5s ease-in-out;
+}
+
+.filter-select.active+.cascade-list {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+} */
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* === Fix menu Altre Categorie === */
+
+/* Contenitore per gestire allineamento corretto */
+.filter-item.has-cascade {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Rimuove il bordo da "Altre Categorie" quando è chiuso */
+.filter-item.has-cascade .filter-select {
+  border: none;
+}
+.filter-item.has-cascade .filter-select .select-icon{
+  padding-left: 15px;
+}
+
+/* Aggiunge il bordo solo quando il menu è aperto */
+.filter-item.has-cascade:focus-within .filter-select,
+.filter-item.has-cascade:hover .filter-select {
+  border: 1px solid var(--jet);
+}
+
+/* Allinea meglio il menu a discesa al pulsante principale */
+.cascade-list {
+  position: absolute;
+  top: 100%; /* allineato subito sotto il bottone */
+  left: 0;
+  width: 100%;
+  margin-top: 4px;
+  background: var(--eerie-black2);
+  border: 1px solid var(--jet);
+  border-radius: 14px;
+  padding: 6px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+/* Mostra il menu solo quando il bottone è attivo o in focus */
+.filter-item.has-cascade:focus-within .cascade-list,
+.filter-item.has-cascade:hover .cascade-list {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Evidenziazione gialla della voce cliccata nel menu a cascata */
+.cascade-list .select-item button.active {
+  color: var(--vegas-gold);
+  font-weight: var(--fw400);
+}
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
 .select-list {
     background: var(--eerie-black2);
@@ -1272,6 +1472,7 @@ textarea.form-input::-webkit-realizer {
     .blog-banner-box {
         height: auto;
     }
+
     /* .navbar-item{
         flex-wrap: nowrap;
         justify-content: space-evenly;
@@ -1290,14 +1491,15 @@ textarea.form-input::-webkit-realizer {
     .blog-banner-box {
         height: auto;
     }
+
     /* .navbar-item{
         flex-wrap: nowrap;
         justify-content: space-evenly;
     } */
-    .navbar-link{
+    .navbar-link {
         padding: 15px 0px;
     }
-    
+
 }
 
 @media (min-width: 580px) {
@@ -1407,7 +1609,7 @@ textarea.form-input::-webkit-realizer {
 
     .navbar-link {
         --fs8: 14px;
-        
+
     }
 
     .about .article-title {
@@ -1720,6 +1922,7 @@ textarea.form-input::-webkit-realizer {
     .blog-banner-box {
         height: 230px;
     }
+
     /* -------------------------------------------------- */
     .article-title {
         margin-top: 30px
@@ -1838,7 +2041,8 @@ textarea.form-input::-webkit-realizer {
     .timeline-text {
         max-width: 700px;
     }
-/* -------------------------------------------------------------- */
+
+    /* -------------------------------------------------------------- */
     .article-title {
         margin-top: 30px
     }
