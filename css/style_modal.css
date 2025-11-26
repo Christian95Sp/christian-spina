@@ -273,6 +273,14 @@
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
+.modal-sub-subtitle {
+    font-size: 1rem;
+    color: var(--white2);
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
 
 /* .modal-content p {
     color: var(--light-gray);

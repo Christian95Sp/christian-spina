@@ -214,6 +214,7 @@ document.querySelectorAll('.modal-container-corsi .overlay').forEach(overlay => 
 
 
 
+
 // ------------------------------------------------------------------
 // RESPONSIVE MOBILE: Fix per il pulsante chiusura sempre visibile
 // ------------------------------------------------------------------

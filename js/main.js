@@ -63,9 +63,9 @@ for (let i = 0; i < selectItems.length; i++) {
 
 const filterItems = document.querySelectorAll('[data-filter-item]');
 
-const filterFunc = function (selectedValue) {
+/* const filterFunc = function (selectedValue) {
     for (let i = 0; i < filterItems.length; i++) {
-        if (selectedValue == "tutti") /*all*/ {
+        if (selectedValue == "tutti")  {
             filterItems[i].classList.add('active');
         } else if (selectedValue == filterItems[i].dataset.category) {
             filterItems[i].classList.add('active');
@@ -73,7 +73,29 @@ const filterFunc = function (selectedValue) {
             filterItems[i].classList.remove('active');
         }
     }
+} */
+
+/* versione migliorata con possibilita di mettere categorie multiple */
+// versione migliorata: supporta più categorie in data-category (es. "Sviluppo Web, AI, Wordpress")
+const filterFunc = function (selectedValue) {
+    selectedValue = (selectedValue || '').toLowerCase().trim();
+    for (let i = 0; i < filterItems.length; i++) {
+        const item = filterItems[i];
+        if (selectedValue === "tutti") {
+            item.classList.add('active');
+            continue;
+        }
+        const raw = item.dataset.category || '';
+        // split per virgola o pipe, trim e normalizza a lowercase
+        const cats = raw.split(/[,\|]/).map(s => s.trim().toLowerCase()).filter(Boolean);
+        if (cats.includes(selectedValue)) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    }
 }
+
 
 //Enabling filter button for larger screens 
 
