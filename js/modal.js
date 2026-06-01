@@ -359,3 +359,87 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 });
  */
 
+// Funzione per gestire il movimento specifico di un carosello
+function updateCarousel(container, nextIndex) {
+  const items = container.querySelectorAll('.carousel-item');
+  const dots = container.querySelectorAll('.dot');
+  const activeItem = container.querySelector('.carousel-item.active');
+  const activeIndex = Array.from(items).indexOf(activeItem);
+
+  if (nextIndex === activeIndex) return;
+
+  // Gestione uscita
+  activeItem.classList.remove('active');
+  activeItem.classList.add('leaving');
+
+  setTimeout(() => {
+    activeItem.classList.remove('leaving');
+  }, 600);
+
+  // Imposta nuova slide
+  items[nextIndex].classList.add('active');
+  
+  // Aggiorna solo i dots di questo specifico carosello
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === nextIndex));
+}
+
+// Event delegator per i bottoni (Next/Prev)
+document.addEventListener('click', function(e) {
+  // Cerca il bottone cliccato
+  const btn = e.target.closest('.nav-btn');
+  if (!btn) return;
+
+  const container = btn.closest('.carousel-container');
+  const items = container.querySelectorAll('.carousel-item');
+  const activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
+  
+  // Determina direzione
+  const direction = btn.classList.contains('next') ? 1 : -1;
+  const nextIndex = (activeIndex + direction + items.length) % items.length;
+  
+  updateCarousel(container, nextIndex);
+});
+
+// Event delegator per i pallini (Dots)
+document.addEventListener('click', function(e) {
+  const dot = e.target.closest('.dot');
+  if (!dot) return;
+
+  const container = dot.closest('.carousel-container');
+  const dots = Array.from(container.querySelectorAll('.dot'));
+  const nextIndex = dots.indexOf(dot);
+  
+  updateCarousel(container, nextIndex);
+});
+/* 
+function updateCarousel(nextIndex) {
+  const items = document.querySelectorAll('.carousel-item');
+  const dots = document.querySelectorAll('.dot');
+  const activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
+
+  if (nextIndex === activeIndex) return;
+
+  // Gestione uscita
+  items[activeIndex].classList.remove('active');
+  items[activeIndex].classList.add('leaving');
+
+  // Pulizia classe 'leaving' dopo l'animazione
+  setTimeout(() => {
+    items[activeIndex].classList.remove('leaving');
+  }, 600);
+
+  // Imposta nuova slide
+  items[nextIndex].classList.add('active');
+  dots.forEach((dot, i) => dot.classList.toggle('active', i === nextIndex));
+}
+
+function changeSlide(direction) {
+  const items = document.querySelectorAll('.carousel-item');
+  let activeIndex = Array.from(items).findIndex(item => item.classList.contains('active'));
+  let nextIndex = (activeIndex + direction + items.length) % items.length;
+  updateCarousel(nextIndex);
+}
+
+function goToSlide(index) {
+  updateCarousel(index);
+} */

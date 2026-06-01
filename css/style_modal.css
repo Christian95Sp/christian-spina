@@ -273,6 +273,7 @@
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
+
 .modal-sub-subtitle {
     font-size: 1rem;
     color: var(--white2);
@@ -669,6 +670,178 @@
     opacity: 1 !important;
 }
 
+.ul-list-dot {
+    list-style-type: disc;
+    /* Forza il pallino pieno */
+    padding-left: 20px;
+    /* Crea lo spazio a sinistra per i pallini */
+    margin: 15px 0;
+    /* Distanzia la lista sopra e sotto */
+}
+
+/* ******************* */
+:root {
+    --transition-duration: 0.6s;
+}
+
+html {
+    overflow-y: scroll;
+}
+
+/* Impedisce il salto del layout */
+
+.carousel-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+    border-radius: 0.6em;
+    overflow: hidden;
+    /* Fondamentale: nasconde le slide mentre scorrono */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Transizione fluida */
+    transition: transform var(--transition-duration) cubic-bezier(0.25, 1, 0.5, 1), opacity var(--transition-duration) ease;
+    transform: translateX(100%);
+    /* Fuori a destra */
+    opacity: 0;
+    visibility: hidden;
+}
+
+.carousel-item.active {
+    transform: translateX(0);
+    /* Al centro */
+    opacity: 1;
+    visibility: visible;
+}
+
+.carousel-item.leaving {
+    transform: translateX(-100%);
+    /* Esce a sinistra */
+    opacity: 0;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Zoom fluido solo sull'immagine attiva */
+.carousel-item.active {
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+}
+
+.carousel-item.active:hover {
+    transform: scale(1.03) !important;
+    /* Forza lo scale sull'attiva */
+}
+
+.carousel-item.active:hover img {
+    transform: scale(1.03);
+    /* Zoom dell'immagine */
+}
+
+/* Bottoni Moderni */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.nav-btn:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.nav-btn.prev {
+    left: 0;
+    border-radius: 0 50% 50% 0;
+}
+
+.nav-btn.next {
+    right: 0;
+    border-radius: 50% 0 0 50%;
+}
+
+
+/* Pallini */
+.carousel-dots {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 20;
+
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.2);
+}
+
+@media (max-width: 500px) {
+    .carousel-wrapper {
+        width: 95vw;
+    }
+
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* Effetto Glassmorphism */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
 
 /* punto 1. Un'immagine è verticale quando è più alta che larga, mentre è orizzontale  quando è più larga che alta. 
 identifico una immagine verticale con la classe  .img-verticale-corso
