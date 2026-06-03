@@ -443,3 +443,43 @@ function changeSlide(direction) {
 function goToSlide(index) {
   updateCarousel(index);
 } */
+
+  /* ----------------------------GALLERY MODALE------------------------------------------ */
+
+  // Aspettiamo che il DOM sia caricato (se non usi già $(document).ready)
+//$(document).ready(function() {
+    
+    // Controlliamo la larghezza dello schermo per stabilire se siamo su mobile
+//    var isMobile = window.matchMedia("(max-width: 600px)").matches;
+
+    // Definiamo i pulsanti in base al dispositivo
+//    var fancyboxButtons = isMobile 
+//        ? ["slideShow", "close"] // Su telefono: solo slideshow e chiudi
+//        : ["slideShow", "thumbs", "close"]; // Su desktop: aggiungiamo le miniature
+
+    // Inizializziamo Fancybox per tutte le ancore che iniziano con data-fancybox="gallery-"
+//    $('[data-fancybox^="gallery"]').fancybox({
+//        buttons: fancyboxButtons,
+//        arrows: true, // Forza sempre l'apparizione delle frecce laterali per lo scorrimento
+//        loop: true,   // Meglio 'true' se usi lo slideshow, così riparte da capo
+//        protect: true, // Impedisce il tasto destro per scaricare l'immagine
+        
+        // Impostazioni per migliorare l'integrazione nel tuo modale
+//        keyboard: true,
+//        infobar: true, // Mostra il contatore
+ //   });
+//});
+
+
+$(document).ready(function() {
+        $.extend($.fancybox.defaults, {
+        loop: true,
+        // Passiamo sempre tutti e 3 i pulsanti di base
+        buttons: ["slideShow", "thumbs", "zoom", "close"],
+            arrows: true, 
+            protect: true,
+
+			keyboard: true,
+        infobar: true
+        });
+    });

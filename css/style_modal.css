@@ -680,161 +680,14 @@
 }
 
 /* ******************* */
-:root {
-    --transition-duration: 0.6s;
-}
 
-html {
-    overflow-y: scroll;
-}
+/* punto 1. Un'immagine è verticale quando è più alta che larga, mentre è orizzontale  quando è più larga che alta. 
+identifico una immagine verticale con la classe  .img-verticale-corso
+punto 2. esatto “Scorrere tutto il modale” — significa che vuoi che l’intero modale .corso-modal diventi scrollabile verticalmente (compresa immagine, testo, tag, ecc.)?
 
-/* Impedisce il salto del layout */
+In pratica, la scrollbar deve apparire sul modale, non solo nella sezione testuale sotto l’immagine? */
 
-.carousel-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 20px 0;
-}
-
-.carousel-wrapper {
-    position: relative;
-    width: 90%;
-    max-width: 800px;
-    aspect-ratio: 16 / 9;
-    border-radius: 0.6em;
-    overflow: hidden;
-    /* Fondamentale: nasconde le slide mentre scorrono */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.carousel-item {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Transizione fluida */
-    transition: transform var(--transition-duration) cubic-bezier(0.25, 1, 0.5, 1), opacity var(--transition-duration) ease;
-    transform: translateX(100%);
-    /* Fuori a destra */
-    opacity: 0;
-    visibility: hidden;
-}
-
-.carousel-item.active {
-    transform: translateX(0);
-    /* Al centro */
-    opacity: 1;
-    visibility: visible;
-}
-
-.carousel-item.leaving {
-    transform: translateX(-100%);
-    /* Esce a sinistra */
-    opacity: 0;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-}
-
-/* Zoom fluido solo sull'immagine attiva */
-.carousel-item.active {
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
-}
-
-.carousel-item.active:hover {
-    transform: scale(1.03) !important;
-    /* Forza lo scale sull'attiva */
-}
-
-.carousel-item.active:hover img {
-    transform: scale(1.03);
-    /* Zoom dell'immagine */
-}
-
-/* Bottoni Moderni */
-.nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 20;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: white;
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    opacity: 0.6;
-}
-
-.nav-btn:hover {
-    opacity: 1;
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.nav-btn.prev {
-    left: 0;
-    border-radius: 0 50% 50% 0;
-}
-
-.nav-btn.next {
-    right: 0;
-    border-radius: 50% 0 0 50%;
-}
-
-
-/* Pallini */
-.carousel-dots {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 20;
-
-}
-
-.dot {
-    width: 10px;
-    height: 10px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.dot.active {
-    background: white;
-    transform: scale(1.2);
-}
-
-@media (max-width: 500px) {
-    .carousel-wrapper {
-        width: 95vw;
-    }
-
-    .nav-btn {
-        width: 35px;
-        height: 35px;
-    }
-}
-
+/* ---  Galleria Modale--- */
 /* Effetto Glassmorphism */
 .glass-effect {
     background: rgba(255, 255, 255, 0.1);
@@ -843,8 +696,127 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* punto 1. Un'immagine è verticale quando è più alta che larga, mentre è orizzontale  quando è più larga che alta. 
-identifico una immagine verticale con la classe  .img-verticale-corso
-punto 2. esatto “Scorrere tutto il modale” — significa che vuoi che l’intero modale .corso-modal diventi scrollabile verticalmente (compresa immagine, testo, tag, ecc.)?
+.gallery-wrapper {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #252a32;
+    width: 100%;
+    margin-top: 2rem; /* Spazio dal testo del tuo modale */
+}
 
-In pratica, la scrollbar deve apparire sul modale, non solo nella sezione testuale sotto l’immagine? */
+/* FIX HOVER: Forza il link a comportarsi come un blocco grande quanto la card */
+.gallery-wrapper a {
+    text-decoration: none;
+    display: block !important;
+    width: 100%;
+    height: 100%;
+}
+
+/* --- Layout Griglia --- */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 colonne su desktop */
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- Stile delle Card --- */
+.gallery-card {
+    background: #ffffff;
+    border-radius: 6px; 
+    box-shadow: 0.3rem 0.4rem 0.4rem rgba(0, 0, 0, 0.4); /* Effetto rilievo */
+    overflow: hidden; /* Taglia l'immagine quando si ingrandisce */
+}
+
+.gallery-image {
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: 70%; /* Aspect ratio */
+    background: #f1f5f8;
+    pointer-events: none; /* Fa in modo che il mouse "senta" direttamente la card o il link */
+}
+
+.gallery-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 400ms ease-out !important; /* Forza la fluidità */
+    will-change: transform; /* Ottimizzazione performance per lo zoom */
+}
+
+/* --- NUOVO SELETTORE HOVER (Più potente e mirato) --- */
+.gallery-card:hover img {
+    transform: scale(1.15) !important; /* Zoom del 15% garantito */
+}
+
+
+/* --- FIX CONTATORE ORIZZONTALE FANCYBOX --- */
+body .fancybox-container .fancybox-infobar {
+    display: block !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: auto !important;
+    height: 44px !important;
+    line-height: 44px !important;
+    text-align: left !important;
+}
+
+body .fancybox-container .fancybox-infobar * {
+    display: inline !important;
+    float: none !important;
+    clear: none !important;
+    white-space: nowrap !important;
+    flex-direction: row !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body .fancybox-container .fancybox-infobar span {
+    margin: 0 4px !important;
+}
+
+/* --- ORDINAMENTO PERSONALIZZATO DEI PULSANTI FANCYBOX --- */
+
+/* Trasformiamo la barra degli strumenti in un contenitore Flexbox attivo */
+.fancybox-toolbar {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important; /* Allinea i tasti a destra dello schermo */
+}
+
+/* Decidi l'ordine visivo (da sinistra a destra).
+   Modifica i numeri come preferisci:
+*/
+.fancybox-button--slideshow { 
+    order: 1 !important; /* Appare per primo (a sinistra) */
+}
+
+.fancybox-button--thumbs { 
+    order: 2 !important; 
+}
+
+.fancybox-button--close { 
+    order: 4 !important; /* Appare per ultimo (a destra, nell'angolo) */
+}
+.fancybox-button--zoom { 
+    order: 3 !important; 
+display: none !important; 
+}
+
+/* --- Responsive (Mobile) --- */
+@media only screen and (max-width: 600px) {
+    /* La tua griglia a 2 colonne */
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 0.8rem;
+    }
+
+    /* Nasconde il tasto miniature SOLO su smartphone */
+    .fancybox-button--thumbs {
+        display: none !important;
+    }
+}
