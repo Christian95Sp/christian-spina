@@ -61,6 +61,32 @@ for (let i = 0; i < selectItems.length; i++) {
     });
 }
 
+
+// Seleziona gli elementi specifici per il portfolio
+const selectPortfolio = document.querySelector('[data-select-portfolio]');
+const selectItemsPortfolio = document.querySelectorAll('[data-select-item-portfolio]');
+const selectValuePortfolio = document.querySelector('[data-select-value-portfolio]');
+
+// Evento click sul bottone principale del portfolio
+selectPortfolio.addEventListener('click', function () { 
+    elementToggleFunc(this); 
+});
+
+// Evento click sulle voci della lista portfolio
+for (let i = 0; i < selectItemsPortfolio.length; i++) {
+    selectItemsPortfolio[i].addEventListener('click', function () {
+
+        let selectedValue = this.innerText.toLowerCase();
+        selectValuePortfolio.innerText = this.innerText;
+        
+        // Chiude il menu dopo la selezione
+        elementToggleFunc(selectPortfolio);
+        
+        // Esegue il filtro
+        filterFunc(selectedValue);
+    });
+}
+
 const filterItems = document.querySelectorAll('[data-filter-item]');
 
 /* const filterFunc = function (selectedValue) {
@@ -118,7 +144,7 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 // Enabling Contact Form
 
-const form = document.querySelector('[data-form]');
+/* const form = document.querySelector('[data-form]');
 const formInputs = document.querySelectorAll('[data-form-input]');
 const formBtn = document.querySelector('[data-form-btn]');
 
@@ -130,7 +156,7 @@ for (let i = 0; i < formInputs.length; i++) {
             formBtn.setAttribute('disabled', '');
         }
     })
-}
+} */
 
 // Enabling Page Navigation 
 
